@@ -97,5 +97,13 @@
 	从类加载器(ClassLoader)进行不同版本的依赖接管和隔离。其中Aladdin会在运行时接管类加载来使用统一管控平台上配置的依赖版本进行替换，没有配置的依赖仍然是不稳定的，并且由于是运行时替换，对开发者不可感知，出现问题将难以定位。个人觉得Aladdin更适用于功能单一、依赖不复杂的中间件进行托管和管控。
 	sofa-ark主要用作类隔离，提供不同组件对同一依赖的不同版本共存适用，不提供管控功能。并且需要针对ark开发适用ark的plugin和app，对开发方式转变较大，其核心思路和Java 9的模块化类似。
 	
-
+2. 配置依赖的scope为`provided`。将组建依赖配置为provided后，依赖将不会被传递。如果项目中没有引入相关依赖或者引入版本不同的依赖会导致启动失败或者运行异常。
+	```xml
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.47</version>
+		<scope>provided</scope>
+	</dependency>
+	```
 
