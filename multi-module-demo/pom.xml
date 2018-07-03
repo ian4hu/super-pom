@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>super-pom</artifactId>
+		<groupId>com.youzan.i.hujixu</groupId>
+		<!-- ↓↓↓实际子项目应当使用RELEASE，而不是具体版本号，以便于自动更新↓↓↓ -->
+		<version>1.0.0</version>
+		<!-- ↓↓↓本地测试使用，实际使用不要配置↓↓↓ -->
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<modules>
+		<module>bad-child</module>
+		<module>framework-bom</module>
+		<module>bom-demo</module>
+	</modules>
+
+	<!-- ↓↓↓本项目版本不受外部parent.version限制↓↓↓ -->
+	<version>1.0.1</version>
+
+	<artifactId>multi-module-demo</artifactId>
+
+</project>
