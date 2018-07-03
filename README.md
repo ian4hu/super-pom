@@ -10,6 +10,9 @@
 4. 依赖管理最佳实践(可选)
 
 ## 效果
+
+### 验证是否违规
+
 ```text
 hujixudeMacBook-Pro:super-pom hujixu$ cd multi-module-demo/
 hujixudeMacBook-Pro:multi-module-demo hujixu$ mvn compile
@@ -54,7 +57,10 @@ The reactor contains different versions.
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
 ```
-查看全部违规
+
+
+### 查看全部违规
+
 ```text
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
