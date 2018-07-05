@@ -4,7 +4,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.youzan.i.hujixu</groupId>
+	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
@@ -39,7 +39,7 @@
 									<message>[WARNING][Enforcer] 多模块项目子模块需要保持版本号相同（建议不要显式设置子模块版本号，从parent继承）</message>
 								</reactorModuleConvergence>
 								<!-- 禁止循环依赖 -->
-								<banCircularDependencies/>
+								<banDependencies/>
 
 								<!-- 强制utf-8编码 -->
 								<evaluateBeanshell>

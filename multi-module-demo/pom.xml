@@ -4,7 +4,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<artifactId>super-pom</artifactId>
-		<groupId>com.youzan.i.hujixu</groupId>
+		<groupId>com.gitee.ian4hu</groupId>
 		<!-- ↓↓↓实际子项目应当使用RELEASE，而不是具体版本号，以便于自动更新↓↓↓ -->
 		<version>1.0.0</version>
 		<!-- ↓↓↓本地测试使用，实际使用不要配置↓↓↓ -->
