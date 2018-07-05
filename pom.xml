@@ -4,7 +4,7 @@
 
 	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 	<name>Super POM</name>
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
