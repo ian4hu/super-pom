@@ -10,7 +10,7 @@
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
 		maven-enforcer-plugin.
 	</description>
-	<url>http://www.dexcoder.com/</url>
+	<url>https://gitee.com/ian4hu/super-pom</url>
 	<licenses>
 		<license>
 			<name>The Apache Software License, Version 2.0</name>
