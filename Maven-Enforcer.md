@@ -89,7 +89,7 @@
 2. 禁止使用某个组件 [bannedDependencies](https://maven.apache.org/enforcer/enforcer-rules/bannedDependencies.html)
 3. 框架组提供管理好版本号的POM，供业务团队使用。通过Maven POM中声明中间件版本组合为[`dependencyManagement`](https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html)，业务团队不需要在引用时写死版本号，只要中间件团队去组织好各中间件能配合使用的版本组合，业务团队不用关心怎么配合使用，使用POM导入的就是已经配合好了的
 4. 多模块项目检查子模块版本和父级是否一致 [reactorModuleConvergence](https://maven.apache.org/enforcer/enforcer-rules/reactorModuleConvergence.html)
-5. 架构部将通用规则和配置提取到一个Super-POM中，各业务团队需直接或者间接继承自此POM。公司级别规则应用于此Super-POM，这样对于通行规则，可以进行强制约束，此Super-POM使用逻辑版本`RELEASE`或`LATEST`被其他项目继承。Super-POM中仅包含规则和Plugin配置，不包含依赖等。由于是使用`LATEST`或者`RELEASE`，子项目不需要每次规则修改时去更新此POM版本，新的构建将应用最新的规则。[关于LATEST和RELEASE的说明]()
+5. 架构部将通用规则和配置提取到一个Super-POM中，各业务团队需直接或者间接继承自此POM。公司级别规则应用于此Super-POM，这样对于通行规则，可以进行强制约束，此Super-POM使用逻辑版本`RELEASE`或`LATEST`被其他项目继承。Super-POM中仅包含规则和Plugin配置，不包含依赖等。由于是使用`LATEST`或者`RELEASE`，子项目不需要每次规则修改时去更新此POM版本，新的构建将应用最新的规则。[关于LATEST和RELEASE的说明](https://stackoverflow.com/a/1172371/4045767)
 	![项目结构](./diag.png "项目结构")
 6. Maven Enforcer提供了扩展API，可以根据需求进行定制，以适应不同组织的不同需求。
 
