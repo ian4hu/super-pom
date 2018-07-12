@@ -90,11 +90,12 @@
 3. 框架组提供管理好版本号的POM，供业务团队使用。通过Maven POM中声明中间件版本组合为`dependencyManagement`，业务团队不需要在引用时写死版本号，只要中间件团队去组织好各中间件能配合使用的版本组合，业务团队不用关心怎么配合使用，使用POM导入的就是已经配合好了的
 4. 多模块项目检查子模块版本和父级是否一致 [reactorModuleConvergence](https://maven.apache.org/enforcer/enforcer-rules/reactorModuleConvergence.html)
 5. 架构部将通用规则和配置提取到一个Super-POM中，各业务团队需直接或者间接继承自此POM。公司级别规则应用于此Super-POM，这样对于通行规则，可以进行强制约束，此Super-POM使用逻辑版本`RELEASE`或`LATEST`被其他项目继承。Super-POM中仅包含规则和Plugin配置，不包含依赖等。
+6. Maven Enforcer提供了扩展API，可以根据需求进行定制，以适应不同组织的不同需求。
 
 ## 横向方案比较
 1. [Aladdin](http://gitlab.qima-inc.com/soa/aladdin) OR [sofa-ark](https://github.com/alipay/sofa-ark)
 	
-	从类加载器(ClassLoader)进行不同版本的依赖接管和隔离。其中Aladdin会在运行时接管类加载来使用统一管控平台上配置的依赖版本进行替换，没有配置的依赖仍然是不稳定的，并且由于是运行时替换，对开发者不可感知，出现问题将难以定位。个人觉得Aladdin更适用于功能单一、依赖不复杂的中间件进行托管和管控。
+	从类加载器(ClassLoader)进行不同版本的依赖接管和隔离。其中Aladdin会在运行时接管类加载来使用统一管控平台上配置的依赖版本进行替换，没有配置的依赖仍然是不稳定的，并且由于是运行时替换，对开发者不可感知，属于无侵入式，但如果出现问题将难以定位。个人觉得Aladdin更适用于功能单一、依赖不复杂的中间件进行托管和管控，如果中间件本身依赖比较复杂，这样托管将特别容易产生编译时依赖和运行时依赖不一致的情况。
 	sofa-ark主要用作类隔离，提供不同组件对同一依赖的不同版本共存适用，不提供管控功能。并且需要针对ark开发适用ark的plugin和app，对开发方式转变较大，其核心思路和Java 9的模块化类似。
 	
 2. 配置依赖的scope为`provided`。将组建依赖配置为provided后，依赖将不会被传递。如果项目中没有引入相关依赖或者引入版本不同的依赖会导致启动失败或者运行异常。
