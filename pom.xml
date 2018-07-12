@@ -37,6 +37,8 @@
 		<file.encoding>${encoding}</file.encoding>
 		<enforcer.fail>true</enforcer.fail>
 
+		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<tagNameFormat>@{project.version}</tagNameFormat>
 	</properties>
 
@@ -75,6 +77,7 @@
 									<condition>"${file.encoding}".equals("${encoding}")</condition>
 									<message>[WARNING][Enforcer] 请不要单独配置&lt;file.encoding&gt;，只需要配置&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
 								</evaluateBeanshell>
+
 							</rules>
 						</configuration>
 					</execution>
