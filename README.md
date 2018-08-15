@@ -1,6 +1,6 @@
 # Super-POM 超级POM项目
 
-[![Maven Central](https://img.shields.io/badge/maven%20central-RELEASE-green.svg)](https://search.maven.org/artifact/com.gitee.ian4hu/super-pom/)
+[![Maven Central](https://img.shields.io/badge/maven--central-RELEASE-green.svg)](https://search.maven.org/search?q=g:com.gitee.ian4hu%20AND%20a:super-pom)
 
 用于在项目上定义约束，以满足项目稳定、安全构建投产。
 背景[使用Maven Enforcer Plugin提升构建稳定性](Maven-Enforcer.md)。
