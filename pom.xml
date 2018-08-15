@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<packaging>pom</packaging>
 	<name>Super POM</name>
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
@@ -20,16 +21,17 @@
 
 	<developers>
 		<developer>
+			<id>ian4hu</id>
 			<name>Ian Hu</name>
 			<email>hu2008yinxiang@163.com</email>
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:git@gitee.com:ian4hu/super-pom.git</connection>
-		<developerConnection>scm:git:git@gitee.com:ian4hu/super-pom.git</developerConnection>
+		<connection>scm:git:${scm.url}</connection>
+		<developerConnection>${scm.connection}</developerConnection>
 		<url>git@gitee.com:ian4hu/super-pom.git</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 
 	<properties>
 		<!-- 编码统一为utf-8 -->
@@ -41,6 +43,7 @@
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
 		<tagNameFormat>@{project.version}</tagNameFormat>
+
 	</properties>
 
 	<build>
@@ -58,20 +61,21 @@
 						<configuration>
 							<rules>
 								<!-- 禁止声明重复依赖 -->
-								<banDuplicatePomDependencyVersions />
+								<banDuplicatePomDependencyVersions/>
 								<!-- 禁止依赖同一个组组件不同版本 -->
-								<dependencyConvergence />
+								<dependencyConvergence/>
 								<!-- 多模块项目最佳实践 see:https://maven.apache.org/enforcer/enforcer-rules/reactorModuleConvergence.html -->
 								<reactorModuleConvergence>
 									<message>[WARNING][Enforcer] 多模块项目子模块需要保持版本号相同（建议不要显式设置子模块版本号，从parent继承）</message>
 								</reactorModuleConvergence>
 								<!-- 禁止循环依赖 -->
-								<banDependencies />
+								<banDependencies/>
 
 								<!-- 强制utf-8编码 -->
 								<evaluateBeanshell>
 									<condition>"${encoding}".toLowerCase().equals("utf-8")</condition>
-									<message>[WARNING][Enforcer] 请使用utf-8编码:&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
+									<message>[WARNING][Enforcer] 请使用utf-8编码:&lt;encoding&gt;utf-8&lt;encoding&gt;
+									</message>
 								</evaluateBeanshell>
 								<!-- 强制utf-8编码file.encoding -->
 								<evaluateBeanshell>
