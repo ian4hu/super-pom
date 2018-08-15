@@ -1,5 +1,7 @@
 # Super-POM 超级POM项目
 
+[![Maven Central](https://img.shields.io/badge/maven%20central-RELEASE-green.svg)](https://search.maven.org/artifact/com.gitee.ian4hu/super-pom/)
+
 用于在项目上定义约束，以满足项目稳定、安全构建投产。
 背景[使用Maven Enforcer Plugin提升构建稳定性](Maven-Enforcer.md)。
 基于[Maven Enforcer Plugin](Maven-Enforcer.md)构建的约束规则。
@@ -11,6 +13,15 @@
 5. 重复类检测
 6. 禁止循环依赖
 7. 使用[OSS Index REST API v2.0](https://ossindex.net)进行依赖安全审计，报告存在缺陷的依赖
+
+## 使用
+```xml
+<parent>
+	<groupId>com.gitee.ian4hu</groupId>
+	<artifactId>super-pom</artifactId>
+	<version>RELEASE</version>
+</parent>
+```
 
 ## 效果
 
