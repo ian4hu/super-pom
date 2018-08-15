@@ -27,8 +27,8 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:${scm.url}</connection>
-		<developerConnection>${scm.connection}</developerConnection>
+		<connection>scm:git:${project.scm.url}</connection>
+		<developerConnection>${project.scm.connection}</developerConnection>
 		<url>git@gitee.com:ian4hu/super-pom.git</url>
 		<tag>HEAD</tag>
 	</scm>
