@@ -4,7 +4,7 @@
 
 	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
-	<version>1.0.4-SNAPSHOT</version>
+	<version>1.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Super POM</name>
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
@@ -35,6 +35,7 @@
 		<!-- 编码统一为utf-8 -->
 		<encoding>utf-8</encoding>
 		<file.encoding>${encoding}</file.encoding>
+		<sourceEncoding>${encoding}</sourceEncoding>
 		<enforcer.fail>true</enforcer.fail>
 
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
