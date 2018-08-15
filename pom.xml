@@ -5,7 +5,7 @@
 
 	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 	<packaging>pom</packaging>
 	<name>Super POM</name>
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
@@ -79,7 +79,7 @@
 								</evaluateBeanshell>
 								<!-- 强制utf-8编码file.encoding -->
 								<evaluateBeanshell>
-									<condition>"${file.encoding}".equals("${encoding}")</condition>
+									<condition>"${file.encoding}".toLowerCase().equals("${encoding}")</condition>
 									<message>[WARNING][Enforcer] 请不要单独配置&lt;file.encoding&gt;，只需要配置&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
 								</evaluateBeanshell>
 
