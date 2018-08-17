@@ -267,7 +267,6 @@
 					<execution>
 						<!-- 安全缺陷的依赖扫描 -->
 						<id>vulnerability-checks</id>
-						<phase>validate</phase>
 						<goals>
 							<goal>enforce</goal>
 						</goals>
