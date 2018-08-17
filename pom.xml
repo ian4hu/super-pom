@@ -49,6 +49,8 @@
 		<maven.compiler.source>${source}</maven.compiler.source>
 		<maven.compiler.target>${target}</maven.compiler.target>
 
+		<!-- feature switches -->
+
 		<!-- dependencies versions -->
 
 		<!-- plugins versions -->
@@ -68,6 +70,7 @@
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
 		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -86,6 +89,10 @@
 				<plugin>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven-javadoc-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
 				</plugin>
 				<plugin>
 					<artifactId>maven-source-plugin</artifactId>
@@ -174,7 +181,8 @@
 								<dependencyConvergence/>
 								<!-- 多模块项目最佳实践 see:https://maven.apache.org/enforcer/enforcer-rules/reactorModuleConvergence.html -->
 								<reactorModuleConvergence>
-									<message>[WARNING][Enforcer] 多模块项目子模块需要保持版本号相同（建议不要显式设置子模块版本号，从parent继承）</message>
+									<message>[WARNING][Enforcer] 多模块项目子模块需要保持版本号相同（建议不要显式设置子模块版本号，从parent继承）
+									</message>
 								</reactorModuleConvergence>
 								<!-- 禁止循环依赖 -->
 								<banDependencies/>
@@ -187,7 +195,8 @@
 								</evaluateBeanshell>
 								<!-- 强制utf-8编码file.encoding -->
 								<evaluateBeanshell>
-									<condition>"${file.encoding}".toLowerCase().equals("${encoding}")</condition>
+									<condition>"${file.encoding}".toLowerCase().equals("${encoding}")
+									</condition>
 									<message>[WARNING][Enforcer] 请不要单独配置&lt;file.encoding&gt;，只需要配置&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
 								</evaluateBeanshell>
 
@@ -274,12 +283,40 @@
 				</executions>
 
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
 		<profile>
 			<id>release-to-oss</id>
+
 			<build>
 				<plugins>
 					<!-- GPG -->
@@ -296,32 +333,7 @@
 						</executions>
 					</plugin>
 
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<phase>package</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<phase>package</phase>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
+
 				</plugins>
 			</build>
 		</profile>
