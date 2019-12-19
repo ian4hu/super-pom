@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-./mvnw deploy \
+# update version
+# ./mvnw versions:set -DnewVersion=${NEW_VERSION}
+
+./mvnw clean deploy \
   -s ./ossrh-settings.xml \
   -P release-to-ossrh \
   -Dgpg.passphrase=${GPG_PASSPHRASE} \
