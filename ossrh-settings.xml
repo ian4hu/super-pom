@@ -1,0 +1,25 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+    <servers>
+        <server>
+            <id>ossrh</id>
+            <username>${ossrh.username}</username>
+            <password>${ossrh.password}</password>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>ossrh</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <altSnapshotDeploymentRepositor>
+                    ossrh::default::https://oss.sonatype.org/content/repositories/snapshots
+                </altSnapshotDeploymentRepositor>
+                <altDeploymentRepository>
+                    ossrh::default::https://oss.sonatype.org/service/local/staging/deploy/maven2/
+                </altDeploymentRepository>
+            </properties>
+        </profile>
+    </profiles>
+</settings>
