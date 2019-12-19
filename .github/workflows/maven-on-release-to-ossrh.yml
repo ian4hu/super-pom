@@ -1,4 +1,4 @@
-name: Java Push CI
+name: OSSRH Deploy
 
 on:
   push:
