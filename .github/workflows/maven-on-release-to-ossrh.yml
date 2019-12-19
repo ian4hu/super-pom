@@ -1,9 +1,8 @@
 name: Java Push CI
 
 on:
-  release:
-    types:
-      - created
+  push:
+    tags: *
 
 jobs:
   build:
