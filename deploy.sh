@@ -3,7 +3,7 @@
 # update version
 # ./mvnw versions:set -DnewVersion=${NEW_VERSION}
 
-./mvnw -B clean deploy \
+./mvnw -B clean package deploy \
   -s ./ossrh-settings.xml \
   -P release-to-ossrh \
   -Dgpg.passphrase=${GPG_PASSPHRASE} \
