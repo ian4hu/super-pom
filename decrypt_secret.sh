@@ -7,8 +7,7 @@
 # gpg --quiet --batch --yes --passphrase="${GPG_PASSPHRASE}" --cipher-algo AES256 --output encrypt-key.gpg --symmetric key.gpg
 
 # Decrypt the file
-mkdir $HOME/secrets
+#mkdir $HOME/secrets
 # --batch to prevent interactive command --yes to assume "yes" for questions
-gpg --quiet --batch --yes --decrypt --passphrase="${GPG_PASSPHRASE}" \
---output $HOME/secrets/key.gpg encrypt-key.gpg
-gpg --import $HOME/secrets/key.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="${GPG_PASSPHRASE}" encrypt-key.gpg  |\
+   gpg --quiet --batch --yes --passphrase="${GPG_PASSPHRASE}"  --import
