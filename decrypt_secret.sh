@@ -9,5 +9,6 @@
 # Decrypt the file
 #mkdir $HOME/secrets
 # --batch to prevent interactive command --yes to assume "yes" for questions
+rm -rf ${HOME}/.gnupg
 gpg --quiet --batch --yes --decrypt --passphrase="${GPG_PASSPHRASE}" encrypt-key.gpg  |\
    gpg --quiet --batch --yes --passphrase="${GPG_PASSPHRASE}"  --import
