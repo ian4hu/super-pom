@@ -23,13 +23,13 @@ jobs:
       run: ./mvnw -B package --file pom.xml
 
     - name: Decrypt and import GPG key
-      if: github.event_name == 'create' and github.event.ref_type == 'tag'
+      if: github.event_name == 'create' && github.event.ref_type == 'tag'
       run: bash ./decrypt_secret.sh
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
     - name: Deploy to Maven OSSRH
-      if: github.event_name == 'create' and github.event.ref_type == 'tag'
+      if: github.event_name == 'create' && github.event.ref_type == 'tag'
       run: bash ./deploy.sh
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
