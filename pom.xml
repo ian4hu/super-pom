@@ -5,7 +5,7 @@
 
 	<groupId>com.gitee.ian4hu</groupId>
 	<artifactId>super-pom</artifactId>
-	<version>1.0.14</version>
+	<version>1.0.15</version>
 	<packaging>pom</packaging>
 	<name>Super POM</name>
 	<description>A pre-configured pom can be a parent of new project to make your build stable. enforced by
@@ -30,7 +30,7 @@
 		<connection>scm:git:${project.scm.url}</connection>
 		<developerConnection>${project.scm.connection}</developerConnection>
 		<url>git@gitee.com:ian4hu/super-pom.git</url>
-		<tag>1.0.14</tag>
+		<tag>1.0.15</tag>
 	</scm>
 
 	<properties>
