@@ -1,13 +1,20 @@
 name: Java Push CI
 
 on:
-  push:
-    tags: *
+  release:
+    types:
+      - created
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    env:
+      GPG_KEY: ${{ secret.GPG_KEY }}
+      GPG_PASSPHRASE: ${{ secret.GPG_PASSPHRASE }}
+      OSSRH_USERNAME: ${{ secret.OSSRH_USERNAME }}
+      OSSRH_PASSWORD: ${{ secret.OSSRH_PASSWORD }}
 
     steps:
     - uses: actions/checkout@v1
