@@ -1,7 +1,12 @@
 name: Java Push CI
 
-on: [push, pull_request, create]
-
+on: 
+ push:
+   branches: '**'
+ pull_request:
+   branches: [master, develop]
+ create:
+ 
 jobs:
   build:
 
