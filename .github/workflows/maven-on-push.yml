@@ -1,6 +1,6 @@
 name: Java Push CI
 
-on: [push, pull_request]
+on: [push, pull_request, create]
 
 jobs:
   build:
@@ -21,3 +21,18 @@ jobs:
           ${{ runner.os }}-maven-
     - name: Build with Maven
       run: ./mvnw -B package --file pom.xml
+
+    - name: Decrypt and import GPG key
+      if: github.event_name = 'create' and github.event.ref_type == 'tag'
+      run: bash ./decrypt_secret.sh
+      env:
+        GPG_KEY: ${{ secrets.GPG_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    - name: Deploy to Maven OSSRH
+      if: github.event_name = 'create' and github.event.ref_type == 'tag'
+      run: bash ./deploy.sh
+      env:
+        GPG_KEY: ${{ secrets.GPG_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
