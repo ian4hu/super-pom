@@ -30,13 +30,13 @@ jobs:
 
     - name: Decrypt and import GPG key
       if: github.event_name == 'create' && github.event.ref_type == 'tag'
-      run: bash ./decrypt_secret.sh
+      run: bash ./build-scripts/decrypt_secret.sh
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
     - name: Deploy to Maven OSSRH
       if: github.event_name == 'create' && github.event.ref_type == 'tag'
-      run: bash ./deploy.sh
+      run: bash ./build-scripst/deploy.sh
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}

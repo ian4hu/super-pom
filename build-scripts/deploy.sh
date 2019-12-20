@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
+SCRIPT_HOME=./build-scripts
 
 # update version
 # ./mvnw versions:set -DnewVersion=${NEW_VERSION}
 
 ./mvnw -B clean package deploy \
-  -s ./ossrh-settings.xml \
+  -s ${SCRIPT_HOME}/ossrh-settings.xml \
   -P release-to-ossrh \
   -Dgpg.passphrase=${GPG_PASSPHRASE} \
   -Dossrh.username=${OSSRH_USERNAME} \
