@@ -2,6 +2,10 @@
 [WARNING] 
 [WARNING] Some problems were encountered while building the effective model for com.gitee.ian4hu:bad-child:jar:1.0.2
 [WARNING] 'dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: com.google.guava:guava:jar -> version 18.0 vs 17.0 @ line 39, column 15
+[WARNING] 'parent.version' is either LATEST or RELEASE (both of them are being deprecated) @ com.gitee.ian4hu:multi-module-demo:1.0.1, /Volumes/Home/jixu.hjx/IdeaProjects/super-pom/multi-module-demo/pom.xml, line 8, column 12
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for com.gitee.ian4hu:multi-module-demo:pom:1.0.1
+[WARNING] 'parent.version' is either LATEST or RELEASE (both of them are being deprecated) @ line 8, column 12
 [WARNING] 
 [WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
 [WARNING] 
@@ -10,14 +14,14 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
-[INFO] multi-module-demo
-[INFO] bad-child
-[INFO] framework-bom
-[INFO] bom-demo
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building multi-module-demo 1.0.1
-[INFO] ------------------------------------------------------------------------
+[INFO] multi-module-demo                                                  [pom]
+[INFO] bad-child                                                          [jar]
+[INFO] framework-bom                                                      [pom]
+[INFO] bom-demo                                                           [jar]
+[INFO] 
+[INFO] -----------------< com.gitee.ian4hu:multi-module-demo >-----------------
+[INFO] Building multi-module-demo 1.0.1                                   [1/4]
+[INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
 [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (default-enforcer) @ multi-module-demo ---
 [WARNING] Rule 2: org.apache.maven.plugins.enforcer.ReactorModuleConvergence failed with message:
@@ -36,14 +40,22 @@ The reactor contains different versions.
 [INFO] Adding ignore: *.R
 [INFO] Adding ignore: org.apache.commons.logging.*
 [INFO] 
-[INFO] --- ossindex-maven-plugin:2.3.7:audit (default-audit) @ multi-module-demo ---
-[INFO] OSS Index dependency audit
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building bad-child 1.0.2
-[INFO] ------------------------------------------------------------------------
+[INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (vulnerability-checks) @ multi-module-demo ---
+[INFO] 
+[INFO] ---------------------< com.gitee.ian4hu:bad-child >---------------------
+[INFO] Building bad-child 1.0.2                                           [2/4]
+[INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (default-enforcer) @ bad-child ---
+[WARNING] 
+Dependency convergence error for javax.validation:validation-api:2.0.1.Final paths to dependency are:
++-com.gitee.ian4hu:bad-child:1.0.2
+  +-javax.validation:validation-api:2.0.1.Final
+and
++-com.gitee.ian4hu:bad-child:1.0.2
+  +-org.hibernate:hibernate-validator:5.4.2.Final
+    +-javax.validation:validation-api:1.1.0.Final
+
 [WARNING] 
 Dependency convergence error for org.slf4j:slf4j-api:1.7.25 paths to dependency are:
 +-com.gitee.ian4hu:bad-child:1.0.2
@@ -69,9 +81,9 @@ The reactor contains different versions.
  --> com.gitee.ian4hu:bad-child:jar:1.0.2
 
 [WARNING] Rule 4: org.apache.maven.plugins.enforcer.EvaluateBeanshell failed with message:
-[WARNING][Enforcer] 请使用utf-8编码:<encoding>utf-8<encoding>
+[WARNING][Enforcer][Project encoding must be utf-8] 请使用utf-8编码:<encoding>utf-8<encoding>
 [WARNING] Rule 5: org.apache.maven.plugins.enforcer.EvaluateBeanshell failed with message:
-[WARNING][Enforcer] 请不要单独配置<file.encoding>，只需要配置<encoding>utf-8<encoding>
+[WARNING][Enforcer][Should not use 'file.encoding' property] 请不要单独配置<file.encoding>，只需要配置<encoding>utf-8<encoding>
 [INFO] 
 [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (blacklist-struts-dependencies) @ bad-child ---
 [WARNING] Rule 0: org.apache.maven.plugins.enforcer.BannedDependencies failed with message:
@@ -90,6 +102,7 @@ Use 'mvn dependency:tree' to locate the source of the banned dependencies.
 [INFO] Adding ignore: META-INF/versions/*/module-info
 [INFO] Adding ignore: *.R
 [INFO] Adding ignore: org.apache.commons.logging.*
+[WARNING] Could not find junit:junit:jar:4.12:test at null
 [WARNING] Rule 0: org.apache.maven.plugins.enforcer.BanDuplicateClasses failed with message:
 Duplicate classes found:
 
@@ -604,62 +617,41 @@ Duplicate classes found:
     org/slf4j/impl/StaticLoggerBinder.class
 
 [INFO] 
-[INFO] --- ossindex-maven-plugin:2.3.7:audit (default-audit) @ bad-child ---
-[INFO] OSS Index dependency audit
-[INFO] org.apache.struts:struts2-core:2.5.14.1 - 61 known vulnerabilities, 0 affecting installed version
-[INFO] org.freemarker:freemarker:2.3.26-incubating - No known vulnerabilities
-[INFO] ognl:ognl:3.1.15 - 1 known vulnerabilities, 0 affecting installed version
-[INFO] org.javassist:javassist:3.20.0-GA - No known vulnerabilities
-[INFO] org.apache.logging.log4j:log4j-api:2.9.1 - No known vulnerabilities
-[INFO] commons-fileupload:commons-fileupload:1.3.3 - 5 known vulnerabilities, 0 affecting installed version
-[INFO] org.apache.commons:commons-lang3:3.6 - No known vulnerabilities
-[INFO] com.google.guava:guava:17.0 - No known vulnerabilities
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] org.jboss.netty:netty:3.2.2.Final  [VULNERABLE]
-[ERROR] 4 known vulnerabilities, 1 affecting installed version
-[ERROR] 
-[ERROR] POODLE vulnerability in SSLv3.0 support
-[ERROR] https://ossindex.net/resource/vulnerability/8402382265
-[ERROR] The SSLv3 support is vulnerable to a POODLE attack. SSLv3 should be disabled pending implementation of TLS_FALLBACK_SCSV by Oracle.
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] 
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] io.netty:netty:3.7.0.Final  [VULNERABLE]
-[ERROR] 4 known vulnerabilities, 3 affecting installed version
-[ERROR] 
-[ERROR] [CVE-2014-0193]  Resource Management Errors
-[ERROR] https://ossindex.net/resource/cve/359831
-[ERROR] WebSocket08FrameDecoder in Netty 3.6.x before 3.6.9, 3.7.x before 3.7.1, 3.8.x before 3.8.2, 3.9.x before 3.9.1, and 4.0.x before 4.0.19 allows remote attackers to cause a denial of service (memory consumption) via a TextWebSocketFrame followed by a long stream of ContinuationWebSocketFrames.
-[ERROR] 
-[ERROR] [CVE-2014-3488]  Improper Restriction of Operations within the Bounds of a Memory Buffer
-[ERROR] https://ossindex.net/resource/cve/362374
-[ERROR] The SslHandler in Netty before 3.9.2 allows remote attackers to cause a denial of service (infinite loop and CPU consumption) via a crafted SSLv2Hello message.
-[ERROR] 
-[ERROR] POODLE vulnerability in SSLv3.0 support
-[ERROR] https://ossindex.net/resource/vulnerability/8402382265
-[ERROR] The SSLv3 support is vulnerable to a POODLE attack. SSLv3 should be disabled pending implementation of TLS_FALLBACK_SCSV by Oracle.
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] 
-[INFO] org.slf4j:slf4j-api:1.7.25 - No known vulnerabilities
-[INFO] ch.qos.logback:logback-classic:1.2.2 - No known vulnerabilities
-[INFO] ch.qos.logback:logback-core:1.2.2 - 1 known vulnerabilities, 0 affecting installed version
-[INFO] org.slf4j:slf4j-log4j12:1.7.16 - No known vulnerabilities
-[INFO] log4j:log4j:1.2.17 - No known vulnerabilities
+[INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (vulnerability-checks) @ bad-child ---
+[INFO] Checking for vulnerabilities; [org.slf4j:slf4j-log4j12:jar:1.7.16:compile, io.netty:netty:jar:3.7.0.Final:compile, org.apache.logging.log4j:log4j-api:jar:2.9.1:compile, log4j:log4j:jar:1.2.17:compile, org.javassist:javassist:jar:3.20.0-GA:compile, org.apache.struts:struts2-core:jar:2.5.14.1:compile, ch.qos.logback:logback-core:jar:1.2.2:compile, com.fasterxml:classmate:jar:1.3.1:compile, ognl:ognl:jar:3.1.15:compile, org.slf4j:slf4j-api:jar:1.7.25:compile, org.hibernate:hibernate-validator:jar:5.4.2.Final:compile, com.google.guava:guava:jar:17.0:compile, javax.validation:validation-api:jar:2.0.1.Final:compile, org.apache.commons:commons-lang3:jar:3.6:compile, org.jboss.netty:netty:jar:3.2.2.Final:compile, org.freemarker:freemarker:jar:2.3.26-incubating:compile, commons-fileupload:commons-fileupload:jar:1.3.3:compile, org.jboss.logging:jboss-logging:jar:3.3.0.Final:compile, ch.qos.logback:logback-classic:jar:1.2.2:compile] artifacts
+[INFO] Exclude coordinates: []
+[INFO] Exclude vulnerability identifiers: []
+[INFO] CVSS-score threshold: 0.0
+[WARNING] Rule 0: org.sonatype.ossindex.maven.enforcer.BanVulnerableDependencies failed with message:
+Detected 4 vulnerable components:
+  com.google.guava:guava:jar:17.0:compile; https://ossindex.sonatype.org/component/pkg:maven/com.google.guava/guava@17.0
+    * [CVE-2018-10237]  Deserialization of Untrusted Data (5.9); https://ossindex.sonatype.org/vuln/24585a7f-eb6b-4d8d-a2a9-a6f16cc7c1d0
+  io.netty:netty:jar:3.7.0.Final:compile; https://ossindex.sonatype.org/component/pkg:maven/io.netty/netty@3.7.0.Final
+    * POODLE vulnerability in SSLv3.0 support (0.0); https://ossindex.sonatype.org/vuln/20b79835-7a43-4bea-a985-5e12df1d0b0a
+    * [CVE-2014-0193]  Resource Management Errors (5.0); https://ossindex.sonatype.org/vuln/a3df5795-2bdb-4ec6-b9c2-babe9ec470e5
+    * [CVE-2014-3488]  Improper Restriction of Operations within the Bounds of a Memory Buffer (5.0); https://ossindex.sonatype.org/vuln/b3c3a56f-37c0-4706-bf54-2f61c5c9786f
+    * [CVE-2015-2156]  Improper Input Validation (7.5); https://ossindex.sonatype.org/vuln/f2a31abe-1af6-4f6f-aeeb-60e0e0d3e981
+    * [CVE-2019-16869] Netty before 4.1.42.Final mishandles whitespace before the colon in HTTP headers... (7.5); https://ossindex.sonatype.org/vuln/6ff63cbd-c4ae-4268-be95-43322746b6be
+  org.jboss.netty:netty:jar:3.2.2.Final:compile; https://ossindex.sonatype.org/component/pkg:maven/org.jboss.netty/netty@3.2.2.Final
+    * POODLE vulnerability in SSLv3.0 support (0.0); https://ossindex.sonatype.org/vuln/20b79835-7a43-4bea-a985-5e12df1d0b0a
+    * [CVE-2014-3488]  Improper Restriction of Operations within the Bounds of a Memory Buffer (5.0); https://ossindex.sonatype.org/vuln/b3c3a56f-37c0-4706-bf54-2f61c5c9786f
+    * [CVE-2015-2156]  Improper Input Validation (7.5); https://ossindex.sonatype.org/vuln/f2a31abe-1af6-4f6f-aeeb-60e0e0d3e981
+    * [CVE-2019-16869] Netty before 4.1.42.Final mishandles whitespace before the colon in HTTP headers... (7.5); https://ossindex.sonatype.org/vuln/6ff63cbd-c4ae-4268-be95-43322746b6be
+  org.apache.struts:struts2-core:jar:2.5.14.1:compile; https://ossindex.sonatype.org/component/pkg:maven/org.apache.struts/struts2-core@2.5.14.1
+    * [CVE-2018-1327]  Improper Input Validation (7.5); https://ossindex.sonatype.org/vuln/9b82d7bc-5262-43b8-bd0d-50ede8e76e56
+    * [CVE-2018-11776]  Improper Input Validation (9.8); https://ossindex.sonatype.org/vuln/aea7ad84-58a9-4883-a9ef-f69fae4dcd9c
+
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ bad-child ---
 [INFO] Using 'gbk' encoding to copy filtered resources.
-[INFO] Copying 0 resource
+[INFO] skip non existing resourceDirectory /Volumes/Home/jixu.hjx/IdeaProjects/super-pom/multi-module-demo/bad-child/src/main/resources
 [INFO] 
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ bad-child ---
-[INFO] Nothing to compile - all classes are up to date
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building framework-bom 1.0.1
-[INFO] ------------------------------------------------------------------------
+[INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ bad-child ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] -------------------< com.gitee.ian4hu:framework-bom >-------------------
+[INFO] Building framework-bom 1.0.1                                       [3/4]
+[INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
 [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (default-enforcer) @ framework-bom ---
 [WARNING] Rule 2: org.apache.maven.plugins.enforcer.ReactorModuleConvergence failed with message:
@@ -678,192 +670,13 @@ The reactor contains different versions.
 [INFO] Adding ignore: *.R
 [INFO] Adding ignore: org.apache.commons.logging.*
 [INFO] 
-[INFO] --- ossindex-maven-plugin:2.3.7:audit (default-audit) @ framework-bom ---
-[INFO] OSS Index dependency audit
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building bom-demo 1.0.1
-[INFO] ------------------------------------------------------------------------
+[INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (vulnerability-checks) @ framework-bom ---
+[INFO] 
+[INFO] ---------------------< com.gitee.ian4hu:bom-demo >----------------------
+[INFO] Building bom-demo 1.0.1                                            [4/4]
+[INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (default-enforcer) @ bom-demo ---
-[WARNING] 
-Dependency convergence error for org.slf4j:slf4j-api:1.7.21 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-org.slf4j:slf4j-api:1.7.21
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-org.slf4j:jul-to-slf4j:1.7.21
-        +-org.slf4j:slf4j-api:1.7.21
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-org.slf4j:jcl-over-slf4j:1.7.21
-        +-org.slf4j:slf4j-api:1.7.21
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.slf4j:slf4j-api:1.7.6
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-org.apache.curator:curator-framework:2.8.0
-      +-org.apache.curator:curator-client:2.8.0
-        +-org.slf4j:slf4j-api:1.7.6
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-org.apache.curator:curator-framework:2.8.0
-      +-org.apache.zookeeper:zookeeper:3.4.6
-        +-org.slf4j:slf4j-api:1.6.1
-
-[WARNING] 
-Dependency convergence error for com.google.guava:guava:23.6-android paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.google.guava:guava:23.6-android
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-org.apache.curator:curator-framework:2.8.0
-      +-org.apache.curator:curator-client:2.8.0
-        +-com.google.guava:guava:16.0.1
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-org.apache.curator:curator-framework:2.8.0
-      +-com.google.guava:guava:16.0.1
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-org.apache.curator:curator-recipes:2.8.0
-      +-com.google.guava:guava:16.0.1
-
-[WARNING] 
-Dependency convergence error for org.apache.httpcomponents:httpcore:4.4.4 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.apache.httpcomponents:httpclient:4.5.2
-          +-org.apache.httpcomponents:httpcore:4.4.4
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.apache.httpcomponents:httpcore:4.4.5
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.apache.httpcomponents:httpcore-nio:4.4.5
-          +-org.apache.httpcomponents:httpcore:4.4.5
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-com.youzan:httpasyncclient:4.1.2-RELEASE
-          +-org.apache.httpcomponents:httpcore:4.4.5
-
-[WARNING] 
-Dependency convergence error for org.slf4j:jul-to-slf4j:1.7.21 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-org.slf4j:jul-to-slf4j:1.7.21
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.slf4j:jul-to-slf4j:1.7.6
-
-[WARNING] 
-Dependency convergence error for commons-logging:commons-logging:1.2 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.apache.httpcomponents:httpclient:4.5.2
-          +-commons-logging:commons-logging:1.2
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-com.youzan:httpasyncclient:4.1.2-RELEASE
-          +-commons-logging:commons-logging:1.2
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-commons-validator:commons-validator:1.5.1
-          +-commons-beanutils:commons-beanutils:1.9.2
-            +-commons-logging:commons-logging:1.1.1
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-commons-validator:commons-validator:1.5.1
-          +-commons-logging:commons-logging:1.2
-
-[WARNING] 
-Dependency convergence error for com.fasterxml.jackson.core:jackson-databind:2.8.9 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.fasterxml.jackson.core:jackson-databind:2.8.9
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-com.fasterxml.jackson.core:jackson-databind:2.7.9.1
-
-[WARNING] 
-Dependency convergence error for org.slf4j:jcl-over-slf4j:1.7.21 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-org.slf4j:jcl-over-slf4j:1.7.21
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-org.slf4j:jcl-over-slf4j:1.7.6
-
-[WARNING] 
-Dependency convergence error for commons-collections:commons-collections:3.2.1 paths to dependency are:
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-commons-validator:commons-validator:1.5.1
-          +-commons-beanutils:commons-beanutils:1.9.2
-            +-commons-collections:commons-collections:3.2.1
-and
-+-com.gitee.ian4hu:bom-demo:1.0.1
-  +-com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-    +-com.youzan:NSQ-Client:2.4.1.11-RELEASE
-      +-com.youzan:DCC-Client:1.1.0622-RELEASE
-        +-commons-validator:commons-validator:1.5.1
-          +-commons-collections:commons-collections:3.2.2
-
-[WARNING] Rule 1: org.apache.maven.plugins.enforcer.DependencyConvergence failed with message:
-Failed while enforcing releasability. See above detailed error message.
 [WARNING] Rule 2: org.apache.maven.plugins.enforcer.ReactorModuleConvergence failed with message:
 The reactor contains different versions.
 [WARNING][Enforcer] 多模块项目子模块需要保持版本号相同（建议不要显式设置子模块版本号，从parent继承）
@@ -880,106 +693,28 @@ The reactor contains different versions.
 [INFO] Adding ignore: *.R
 [INFO] Adding ignore: org.apache.commons.logging.*
 [INFO] 
-[INFO] --- ossindex-maven-plugin:2.3.7:audit (default-audit) @ bom-demo ---
-[INFO] OSS Index dependency audit
-[INFO] com.youzan.framework:redis-zan:1.0.11-RELEASE - No known vulnerabilities
-[INFO] redis.clients:jedis:2.9.0 - No known vulnerabilities
-[INFO] org.apache.commons:commons-pool2:2.4.2 - No known vulnerabilities
-[INFO] com.youzan.platform:spring-nsq:1.0.4.1-RELEASE - No known vulnerabilities
-[INFO] com.youzan:NSQ-Client:2.4.1.11-RELEASE - No known vulnerabilities
-[INFO] com.google.guava:guava:23.6-android - No known vulnerabilities
-[INFO] com.google.code.findbugs:jsr305:1.3.9 - No known vulnerabilities
-[INFO] org.checkerframework:checker-compat-qual:2.0.0 - No known vulnerabilities
-[INFO] com.google.errorprone:error_prone_annotations:2.1.3 - No known vulnerabilities
-[INFO] com.google.j2objc:j2objc-annotations:1.1 - No known vulnerabilities
-[INFO] org.codehaus.mojo:animal-sniffer-annotations:1.14 - No known vulnerabilities
-[INFO] org.slf4j:slf4j-api:1.7.21 - No known vulnerabilities
-[INFO] org.slf4j:jul-to-slf4j:1.7.21 - No known vulnerabilities
-[INFO] org.slf4j:jcl-over-slf4j:1.7.21 - No known vulnerabilities
-[INFO] io.netty:netty-all:4.1.13.Final - 4 known vulnerabilities, 0 affecting installed version
-[INFO] org.apache.commons:commons-compress:1.14 - 1 known vulnerabilities, 0 affecting installed version
-[INFO] com.fasterxml.jackson.core:jackson-databind:2.8.9 - No known vulnerabilities
-[INFO] com.fasterxml.jackson.core:jackson-annotations:2.8.0 - No known vulnerabilities
-[INFO] com.fasterxml.jackson.core:jackson-core:2.8.9 - No known vulnerabilities
-[INFO] org.apache.commons:commons-lang3:3.6 - No known vulnerabilities
-[INFO] com.youzan:DCC-Client:1.1.0622-RELEASE - No known vulnerabilities
-[INFO] org.apache.httpcomponents:httpclient:4.5.2 - 5 known vulnerabilities, 0 affecting installed version
-[INFO] commons-logging:commons-logging:1.2 - No known vulnerabilities
-[INFO] commons-codec:commons-codec:1.9 - No known vulnerabilities
-[INFO] org.apache.httpcomponents:httpcore:4.4.5 - No known vulnerabilities
-[INFO] org.apache.httpcomponents:httpcore-nio:4.4.5 - No known vulnerabilities
-[INFO] com.youzan:httpasyncclient:4.1.2-RELEASE - No known vulnerabilities
-[INFO] org.javassist:javassist:3.20.0-GA - No known vulnerabilities
-[INFO] commons-validator:commons-validator:1.5.1 - No known vulnerabilities
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] commons-beanutils:commons-beanutils:1.9.2  [VULNERABLE]
-[ERROR]   required by com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-[ERROR] 1 known vulnerabilities, 1 affecting installed version
-[ERROR] 
-[ERROR] [CVE-2014-0114]  Improper Input Validation
-[ERROR] https://ossindex.net/resource/cve/359770
-[ERROR] Apache Commons BeanUtils, as distributed in lib/commons-beanutils-1.8.0.jar in Apache Struts 1.x through 1.3.10 and in other products requiring commons-beanutils through 1.9.2, does not suppress the class property, which allows remote attackers to "manipulate" the ClassLoader and execute arbitrary code via the class parameter, as demonstrated by the passing of this parameter to the getClass method of the ActionForm object in Struts 1.
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] 
-[INFO] commons-digester:commons-digester:1.8.1 - No known vulnerabilities
-[INFO] commons-collections:commons-collections:3.2.2 - 2 known vulnerabilities, 0 affecting installed version
-[INFO] org.apache.curator:curator-framework:2.8.0 - No known vulnerabilities
-[INFO] org.apache.curator:curator-client:2.8.0 - No known vulnerabilities
-[INFO] org.apache.zookeeper:zookeeper:3.4.6 - 2 known vulnerabilities, 0 affecting installed version
-[INFO] log4j:log4j:1.2.16 - No known vulnerabilities
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] jline:jline:0.9.94  [VULNERABLE]
-[ERROR]   required by com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-[ERROR] 1 known vulnerabilities, 1 affecting installed version
-[ERROR] 
-[ERROR] [Dependency] Arbitrary code execution
-[ERROR] https://ossindex.net/resource/vulnerability/8402731126
-[ERROR] Due to a race condition in HawtJNI the JLine package is vulnerable to an arbitrary code execution vulnerability -- [CVE-2013-2035](https://ossindex.net/resource/cve/355726)
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] 
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] io.netty:netty:3.7.0.Final  [VULNERABLE]
-[ERROR]   required by com.youzan.platform:spring-nsq:1.0.4.1-RELEASE
-[ERROR] 4 known vulnerabilities, 3 affecting installed version
-[ERROR] 
-[ERROR] [CVE-2014-0193]  Resource Management Errors
-[ERROR] https://ossindex.net/resource/cve/359831
-[ERROR] WebSocket08FrameDecoder in Netty 3.6.x before 3.6.9, 3.7.x before 3.7.1, 3.8.x before 3.8.2, 3.9.x before 3.9.1, and 4.0.x before 4.0.19 allows remote attackers to cause a denial of service (memory consumption) via a TextWebSocketFrame followed by a long stream of ContinuationWebSocketFrames.
-[ERROR] 
-[ERROR] [CVE-2014-3488]  Improper Restriction of Operations within the Bounds of a Memory Buffer
-[ERROR] https://ossindex.net/resource/cve/362374
-[ERROR] The SslHandler in Netty before 3.9.2 allows remote attackers to cause a denial of service (infinite loop and CPU consumption) via a crafted SSLv2Hello message.
-[ERROR] 
-[ERROR] POODLE vulnerability in SSLv3.0 support
-[ERROR] https://ossindex.net/resource/vulnerability/8402382265
-[ERROR] The SSLv3 support is vulnerable to a POODLE attack. SSLv3 should be disabled pending implementation of TLS_FALLBACK_SCSV by Oracle.
-[ERROR] 
-[ERROR] --------------------------------------------------------------
-[ERROR] 
-[INFO] org.apache.curator:curator-recipes:2.8.0 - No known vulnerabilities
+[INFO] --- maven-enforcer-plugin:3.0.0-M2:enforce (vulnerability-checks) @ bom-demo ---
+[INFO] Checking for vulnerabilities; [commons-logging:commons-logging:jar:1.2:compile, org.springframework:spring-beans:jar:4.3.9.RELEASE:compile, org.springframework:spring-expression:jar:4.3.9.RELEASE:compile, org.springframework:spring-context:jar:4.3.9.RELEASE:compile, org.springframework:spring-core:jar:4.3.9.RELEASE:compile, org.springframework:spring-aop:jar:4.3.9.RELEASE:compile] artifacts
+[INFO] Exclude coordinates: []
+[INFO] Exclude vulnerability identifiers: []
+[INFO] CVSS-score threshold: 0.0
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ bom-demo ---
 [INFO] Using 'utf-8' encoding to copy filtered resources.
-[INFO] Copying 0 resource
+[INFO] skip non existing resourceDirectory /Volumes/Home/jixu.hjx/IdeaProjects/super-pom/multi-module-demo/bom-demo/src/main/resources
 [INFO] 
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ bom-demo ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ bom-demo ---
+[INFO] No sources to compile
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] multi-module-demo .................................. SUCCESS [  5.180 s]
-[INFO] bad-child .......................................... SUCCESS [  5.967 s]
-[INFO] framework-bom ...................................... SUCCESS [  2.736 s]
-[INFO] bom-demo ........................................... SUCCESS [  6.125 s]
+[INFO] multi-module-demo 1.0.1 ............................ SUCCESS [  0.568 s]
+[INFO] bad-child 1.0.2 .................................... SUCCESS [ 10.607 s]
+[INFO] framework-bom ...................................... SUCCESS [  0.043 s]
+[INFO] bom-demo 1.0.1 ..................................... SUCCESS [  1.399 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time: 20.211 s
-[INFO] Finished at: 2018-07-04T09:57:34+08:00
-[INFO] Final Memory: 20M/212M
+[INFO] Total time: 12.812 s
+[INFO] Finished at: 2019-12-20T11:26:07+08:00
 [INFO] ------------------------------------------------------------------------

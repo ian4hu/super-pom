@@ -14,12 +14,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.youzan.framework</groupId>
-			<artifactId>redis-zan</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.youzan.platform</groupId>
-			<artifactId>spring-nsq</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
 		</dependency>
 	</dependencies>
 

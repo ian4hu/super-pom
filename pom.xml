@@ -59,7 +59,7 @@
 		<maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
 		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 		<maven-enforcer-plugin.version>3.0.0-M2</maven-enforcer-plugin.version>
-		<extra-enforcer-rules.version>1.0-beta-7</extra-enforcer-rules.version>
+		<extra-enforcer-rules.version>1.2</extra-enforcer-rules.version>
 		<restrict-imports-enforcer-rule.version>0.9.0</restrict-imports-enforcer-rule.version>
 		<ossindex-maven-enforcer-rules.version>3.0.0</ossindex-maven-enforcer-rules.version>
 		<ossindex-maven-enforcer-rules.guava.version>20.0</ossindex-maven-enforcer-rules.guava.version>
@@ -185,19 +185,19 @@
 									</message>
 								</reactorModuleConvergence>
 								<!-- 禁止循环依赖 -->
-								<banDependencies/>
+								<banCircularDependencies/>
 
 								<!-- 强制utf-8编码 -->
 								<evaluateBeanshell>
 									<condition>"${encoding}".toLowerCase().equals("utf-8")</condition>
-									<message>[WARNING][Enforcer] 请使用utf-8编码:&lt;encoding&gt;utf-8&lt;encoding&gt;
+									<message>[WARNING][Enforcer][Project encoding must be utf-8] 请使用utf-8编码:&lt;encoding&gt;utf-8&lt;encoding&gt;
 									</message>
 								</evaluateBeanshell>
 								<!-- 强制utf-8编码file.encoding -->
 								<evaluateBeanshell>
 									<condition>"${file.encoding}".toLowerCase().equals("${encoding}")
 									</condition>
-									<message>[WARNING][Enforcer] 请不要单独配置&lt;file.encoding&gt;，只需要配置&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
+									<message>[WARNING][Enforcer][Should not use 'file.encoding' property] 请不要单独配置&lt;file.encoding&gt;，只需要配置&lt;encoding&gt;utf-8&lt;encoding&gt;</message>
 								</evaluateBeanshell>
 
 							</rules>

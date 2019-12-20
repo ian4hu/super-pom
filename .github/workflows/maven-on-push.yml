@@ -28,6 +28,9 @@ jobs:
       run: ./mvnw -B package --file pom.xml
       if: github.event_name != 'create' || github.event.ref_type != 'tag'
 
+    - name: Test demo projects
+      run: ./build-scripts/test.sh
+
     - name: Decrypt and import GPG key
       if: github.event_name == 'create' && github.event.ref_type == 'tag'
       run: bash ./build-scripts/decrypt_secret.sh

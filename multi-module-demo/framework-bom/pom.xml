@@ -12,17 +12,16 @@
 
 	<artifactId>framework-bom</artifactId>
 
+	<properties>
+		<spring.version>4.3.9.RELEASE</spring.version>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.youzan.framework</groupId>
-				<artifactId>redis-zan</artifactId>
-				<version>1.0.11-RELEASE</version>
-			</dependency>
-			<dependency>
-				<groupId>com.youzan.platform</groupId>
-				<artifactId>spring-nsq</artifactId>
-				<version>1.0.4.1-RELEASE</version>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
