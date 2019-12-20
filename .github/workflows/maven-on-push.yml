@@ -24,11 +24,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Build with Maven
-      run: ./mvnw -B package --file pom.xml
-      if: github.event_name != 'create' || github.event.ref_type != 'tag'
-
-    - name: Test demo projects
+    - name: Build && Test demo projects
       run: ./build-scripts/test.sh
 
     - name: Decrypt and import GPG key

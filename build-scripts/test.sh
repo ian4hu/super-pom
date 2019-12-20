@@ -28,7 +28,7 @@ function log_section() {
 
 MVN="${PWD}/mvnw -B"
 
-${MVN} install
+${MVN} package install
 
 cd multi-module-demo
 
